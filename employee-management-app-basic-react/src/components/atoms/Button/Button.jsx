@@ -1,11 +1,11 @@
 import React from 'react'
 import './Button.scss'
 
-const Button = ({btnProp}) => {
+const Button = ({btnProp, origin}) => {
   return (
     <div className="buttonComp">
         {btnProp?.length && btnProp.map((item, index) => 
-            <button type="button" onClick={item.action} className={`buttonComp__btn buttonComp__${item.type}`} key={index}>
+            <button type="button" onClick={item.action} className={`buttonComp__btn buttonComp__${item.type} buttonComp__${origin}`} key={index}>
                 {item.name}
             </button>
         )}

@@ -12,8 +12,9 @@ const EmployeeListScreen = () => {
 
   const updateRecord = () => {}
   const deleteRecord = () => {}
+  const addRecord = () => {}
 
-  const btnArr = [
+  const footerBtnArr = [
     {
       name: "Update",
       action: updateRecord,
@@ -25,11 +26,19 @@ const EmployeeListScreen = () => {
       type: "delete"
     }
   ]
+  const btnArr = [
+    {
+      name: "Add employee",
+      action: addRecord,
+      type: "add"
+    }
+  ]
 
   return (
     <div className="employeeListScreen">
       <div className="employeeListScreen__table">
         <h1>Employee List:</h1>
+        <p><Button btnProp={btnArr} /></p>
         <table>
           <tr>
             <th>ID</th>
@@ -42,7 +51,7 @@ const EmployeeListScreen = () => {
               <td>{item.id}</td>
               <td>{item.firstName} {item.lastName}</td>
               <td>{item.emailId}</td>
-              <td><Button btnProp={btnArr} /></td>
+              <td><Button btnProp={footerBtnArr} origin="listFooter" /></td>
             </tr>
           )}
         </table>
