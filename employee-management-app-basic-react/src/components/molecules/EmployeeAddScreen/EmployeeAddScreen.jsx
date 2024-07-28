@@ -57,7 +57,7 @@ const EmployeeAddScreen = () => {
           </label>
           <label>Enter your email:
             <input
-              type="text" 
+              type="email" 
               value={emailId}
               placeholder='Enter your email'
               onChange={(e) => seEmailId(e.target.value)}
