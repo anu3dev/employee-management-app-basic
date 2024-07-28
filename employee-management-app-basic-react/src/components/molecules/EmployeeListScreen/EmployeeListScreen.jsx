@@ -12,7 +12,9 @@ const EmployeeListScreen = () => {
 
   const updateRecord = () => {}
   const deleteRecord = () => {}
-  const addRecord = () => {}
+  const addRecord = () => {
+    window.location.assign("/add")
+  }
 
   const footerBtnArr = [
     {
@@ -42,14 +44,16 @@ const EmployeeListScreen = () => {
         <table>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Email</th>
             <th>Actions</th>
           </tr>
           {empList?.length && empList.map((item, index) => 
             <tr key={index}>
               <td>{item.id}</td>
-              <td>{item.firstName} {item.lastName}</td>
+              <td>{item.firstName}</td>
+              <td>{item.lastName}</td>
               <td>{item.emailId}</td>
               <td><Button btnProp={footerBtnArr} origin="listFooter" /></td>
             </tr>

@@ -1,12 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './Home.scss'
-import EmployeeListScreen from '../../molecules/EmployeeListScreen'
+import RoutesConfig from '../../../routes/RoutesConfig'
 
 const Home = () => {
   return (
-    <div className="home">
-      <EmployeeListScreen />
-    </div>
+    <Suspense fallback>{RoutesConfig}</Suspense>
   )
 }
 

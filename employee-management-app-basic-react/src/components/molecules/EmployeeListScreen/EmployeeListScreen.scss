@@ -1,6 +1,8 @@
 .employeeListScreen {
     &__table {
         max-width: fit-content;
+        overflow-x: auto;
+
         h1 {
             text-align: center;
         }
@@ -16,6 +18,10 @@
           
         tr:nth-child(even) {
             background-color: #cdd1cc;
+        }
+
+        td:last-child {
+            min-width: 12rem;
         }
     }
 }

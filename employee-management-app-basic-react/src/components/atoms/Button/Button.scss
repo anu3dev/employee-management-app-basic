@@ -15,6 +15,9 @@
     &__listFooter {
         margin: 0 0.5rem;
     }
+    &__addDetails {
+        margin: 0 0 0 0.5rem;
+    }
 
     &__update {
         background-color: #04AA6D;
@@ -54,5 +57,11 @@
     }
     &__add:hover {
         border: .125rem solid #008CBA;
+    }
+}
+
+.buttonGroup {
+    &__addDetails {
+        text-align: end;
     }
 }
