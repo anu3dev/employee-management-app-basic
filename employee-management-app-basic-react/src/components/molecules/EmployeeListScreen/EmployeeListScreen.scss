@@ -1,0 +1,21 @@
+.employeeListScreen {
+    &__table {
+        max-width: fit-content;
+        h1 {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+        }
+          
+        td, th {
+            border: .125rem solid #dddddd;
+            text-align: left;
+            padding: .5rem;
+        }
+          
+        tr:nth-child(even) {
+            background-color: #cdd1cc;
+        }
+    }
+}
