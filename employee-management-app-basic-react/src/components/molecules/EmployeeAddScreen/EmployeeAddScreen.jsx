@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './EmployeeAddScreen.scss'
 import Button from '../../atoms/Button/Button'
-import { saveEmployeeData } from "./EmployeeAddScreenUtils"
+import { saveEmployeeData, getEmployeeData, updateEmployeeData } from "../../../utils/serviceUtils"
 
 const EmployeeAddScreen = () => {
+  const urlParams = new URLSearchParams(window.location.search)
+  const actionVal = urlParams.get('action') || ''
+  const idVal = urlParams.get('id') || null
+
+  const isUpdateAction = actionVal === 'update'
+
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [emailId, seEmailId] = useState("")
+
+  useEffect(() => {
+    if(isUpdateAction)
+    getEmployeeData(idVal, setFirstName, setLastName, seEmailId)
+  },[idVal, isUpdateAction]);
 
   const saveRecord = () => {
     const formData = {
@@ -15,7 +26,8 @@ const EmployeeAddScreen = () => {
       emailId: emailId
     }
 
-    saveEmployeeData(formData)
+    isUpdateAction ? updateEmployeeData(formData, idVal) : saveEmployeeData(formData)
+    window.location.assign("/")
   }
   const backBtn = () => {
     window.location.assign("/")
@@ -34,9 +46,11 @@ const EmployeeAddScreen = () => {
     }
   ]
 
+  const headingVal = `${isUpdateAction ? 'Update' : 'Add'} Employee`
+
   return (
     <div className="employeeAddScreen">
-      <h1>Add Employee</h1>
+      <h1>{headingVal}</h1>
       <div className="employeeAddScreen__form">
         <form>
           <label>Enter your first name:

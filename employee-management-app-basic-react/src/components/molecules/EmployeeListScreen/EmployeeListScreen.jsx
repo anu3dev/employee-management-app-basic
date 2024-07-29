@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './EmployeeListScreen.scss'
-import { fetchEmployeeList } from './EmployeeListScreenUtils'
+import { fetchEmployeeList, deleteEmployeeList } from '../../../utils/serviceUtils'
 import Button from '../../atoms/Button/Button'
 
 const EmployeeListScreen = () => {
@@ -10,8 +10,13 @@ const EmployeeListScreen = () => {
     fetchEmployeeList(setEmpList)
   },[]);
 
-  const updateRecord = () => {}
-  const deleteRecord = () => {}
+  const updateRecord = (id) => {
+    window.location.assign(`/add?id=${id}&action=update`)
+  }
+  const deleteRecord = (id) => {
+    deleteEmployeeList(id)
+    window.location.reload()
+  }
   const addRecord = () => {
     window.location.assign("/add")
   }
@@ -55,7 +60,7 @@ const EmployeeListScreen = () => {
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>{item.emailId}</td>
-              <td><Button btnProp={footerBtnArr} origin="listFooter" /></td>
+              <td><Button btnProp={footerBtnArr} origin="listFooter" ids={item.id} /></td>
             </tr>
           )}
         </table>
