@@ -1,8 +1,10 @@
 import React, { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from '../components/atoms/Header'
 
 export const EmployeeListScreen = lazy(() => import('../components/molecules/EmployeeListScreen'))
 export const EmployeeAddScreen = lazy(() => import ('../components/molecules/EmployeeAddScreen'))
+export const ContactUsScreen = lazy(() => import ('../components/molecules/ContactUsScreen'))
 
 const SelectedRoutes = () => {
   let routes = null
@@ -11,11 +13,20 @@ const SelectedRoutes = () => {
     case 'add':
       routes = <EmployeeAddScreen />
       break
+      case 'contact':
+      routes = <ContactUsScreen />
+      break
     default:
       routes = <EmployeeListScreen />
       break
   }
-  return routes
+
+  return (
+    <>
+      <Header />
+      {routes}
+    </>
+  )
 }
 
 const routeBasePath = '/*'

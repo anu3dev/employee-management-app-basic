@@ -12,11 +12,11 @@ const EmployeeAddScreen = () => {
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [emailId, seEmailId] = useState("")
+  const [emailId, setEmailId] = useState("")
 
   useEffect(() => {
     if(isUpdateAction)
-    getEmployeeData(idVal, setFirstName, setLastName, seEmailId)
+    getEmployeeData(idVal, setFirstName, setLastName, setEmailId)
   },[idVal, isUpdateAction]);
 
   const saveRecord = () => {
@@ -74,7 +74,7 @@ const EmployeeAddScreen = () => {
               type="email" 
               value={emailId}
               placeholder='Enter your email'
-              onChange={(e) => seEmailId(e.target.value)}
+              onChange={(e) => setEmailId(e.target.value)}
             />
           </label>
         </form>

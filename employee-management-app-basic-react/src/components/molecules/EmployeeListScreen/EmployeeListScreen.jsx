@@ -54,13 +54,13 @@ const EmployeeListScreen = () => {
             <th>Email</th>
             <th>Actions</th>
           </tr>
-          {empList?.length && empList.map((item, index) => 
+          {empList.map((item, index) => 
             <tr key={index}>
               <td>{item.id}</td>
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>{item.emailId}</td>
-              <td><Button btnProp={footerBtnArr} origin="listFooter" ids={item.id} /></td>
+              <td><Button btnProp={footerBtnArr} origin="actionBtn" ids={item.id} /></td>
             </tr>
           )}
         </table>

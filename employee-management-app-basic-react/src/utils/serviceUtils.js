@@ -33,7 +33,7 @@ export const saveEmployeeData = ( formData ) => {
         .then((json) => console.log(json));
 }
 
-export const getEmployeeData = async ( ids, setFirstName, setLastName, seEmailId ) => {
+export const getEmployeeData = async ( ids, setFirstName, setLastName, setEmailId ) => {
   const url = `http://localhost:8080/api/v1/getEmployee/${ids}`
   try {
     const response = await fetch(url)
@@ -43,7 +43,7 @@ export const getEmployeeData = async ( ids, setFirstName, setLastName, seEmailId
     const {emailId, firstName, lastName} = await response.json()
     setFirstName(firstName)
     setLastName(lastName)
-    seEmailId(emailId)
+    setEmailId(emailId)
 
   } catch (error) {
     console.error(error.message)

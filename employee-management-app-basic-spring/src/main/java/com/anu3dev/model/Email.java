@@ -8,21 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/*
- * Just need to create DB by below command and table will be automatically created by JPA
- * create database employee_management;
- */
-@Entity
-@Table(name="employees")
 @Data
-public class Employee {
+@Entity
+@Table(name="contact_email_details")
+public class Email {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
-	@Column(name="first_name")
-	private String firstName;
-	@Column(name="last_name")
-	private String lastName;
+	private long Id;
 	@Column(name="email_id")
 	private String emailId;
+	private String message;
 }
