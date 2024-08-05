@@ -22,7 +22,7 @@ import com.anu3dev.model.Employee;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/employee/v1/")
 public class EmployeeController {
 	@Autowired
 	private EmployeeDAO dao;

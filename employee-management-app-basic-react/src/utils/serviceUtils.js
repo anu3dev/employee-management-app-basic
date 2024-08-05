@@ -1,5 +1,5 @@
 export const fetchEmployeeList = async (setEmpList) => {
-    const url = "http://localhost:8080/api/v1/employees"
+    const url = "http://localhost:8080/employee/v1/employees"
   try {
     const response = await fetch(url)
     if (!response.ok) {
@@ -12,7 +12,7 @@ export const fetchEmployeeList = async (setEmpList) => {
 }
 
 export const deleteEmployeeList = (id) => {
-  const url = `http://localhost:8080/api/v1/deleteEmployee/${id}`
+  const url = `http://localhost:8080/employee/v1/deleteEmployee/${id}`
     fetch(url, {
         method: "DELETE",
       })
@@ -21,7 +21,7 @@ export const deleteEmployeeList = (id) => {
 }
 
 export const saveEmployeeData = ( formData ) => {
-    const url = "http://localhost:8080/api/v1/addEmployee"
+    const url = "http://localhost:8080/employee/v1/addEmployee"
     fetch(url, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -34,7 +34,7 @@ export const saveEmployeeData = ( formData ) => {
 }
 
 export const getEmployeeData = async ( ids, setFirstName, setLastName, setEmailId ) => {
-  const url = `http://localhost:8080/api/v1/getEmployee/${ids}`
+  const url = `http://localhost:8080/employee/v1/getEmployee/${ids}`
   try {
     const response = await fetch(url)
     if (!response.ok) {
@@ -51,7 +51,7 @@ export const getEmployeeData = async ( ids, setFirstName, setLastName, setEmailI
 }
 
 export const updateEmployeeData = ( formData, ids ) => {
-  const url = `http://localhost:8080/api/v1/updateEmployee/${ids}`
+  const url = `http://localhost:8080/employee/v1/updateEmployee/${ids}`
     fetch(url, {
         method: "PUT",
         body: JSON.stringify(formData),
