@@ -1,6 +1,5 @@
 package com.anu3dev.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,53 +15,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anu3dev.dao.EmployeeDAO;
-import com.anu3dev.exception.ResourceNotFoundException;
 import com.anu3dev.model.Employee;
+import com.anu3dev.service.IEmployeeService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/employee/v1/")
 public class EmployeeController {
 	@Autowired
-	private EmployeeDAO dao;
+	private IEmployeeService empSer;
 	
 	@GetMapping("/employees")
 	public List<Employee> getAllEmp(){
-		return dao.findAll();
+		return empSer.getAllEmployee();
 	}
 	
 	@PostMapping("/addEmployee")
 	public Employee addEmp(@RequestBody Employee emp) {
-		return dao.save(emp);
+		return empSer.saveEmployeeData(emp);
 	}
 	
 	@GetMapping("/getEmployee/{id}")
 	public ResponseEntity<Employee> getEmp(@PathVariable Long id) {
-		Employee emp = dao.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: "+ id));
-		return ResponseEntity.ok(emp);
+		return empSer.getEmployeeData(id);
 	}
 	
 	@PutMapping("/updateEmployee/{id}")
 	public ResponseEntity<Employee> updateEmp(@PathVariable Long id, @RequestBody Employee emp) {
-		Employee employee = dao.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: "+ id));
-		employee.setFirstName(emp.getFirstName());
-		employee.setLastName(emp.getLastName());
-		employee.setEmailId(emp.getEmailId());
-		
-		Employee updatedEmp = dao.save(employee);
-		return ResponseEntity.ok(updatedEmp);
+		return empSer.updateEmpoyeeData(id, emp);
 	}
 	
 	@DeleteMapping("/deleteEmployee/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmp(@PathVariable Long id){
-		Employee emp = dao.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: "+ id));
-		dao.delete(emp);
-		Map<String, Boolean> res = new HashMap<String, Boolean>();
-		res.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(res);
+		return empSer.deleteEmployeeData(id);
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.anu3dev.dao.EmailDAO;
 import com.anu3dev.model.Email;
 
 import jakarta.mail.internet.MimeMessage;
@@ -16,9 +17,14 @@ public class EmailService implements IEmailService {
 	private JavaMailSender sender;
 	@Value("{spring.mail.username}")
 	private String fromEmailid;
+	@Autowired
+	private EmailDAO dao;
 
 	@Override
 	public String sendContactEmail(Email email) throws Exception {
+		
+		dao.save(email);
+		
 		MimeMessage mimeMessage = sender.createMimeMessage();
 		
 		MimeMessageHelper emailMessage = new MimeMessageHelper(mimeMessage, true);

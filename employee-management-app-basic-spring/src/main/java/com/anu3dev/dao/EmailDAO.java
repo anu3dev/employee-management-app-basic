@@ -4,4 +4,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.anu3dev.model.Email;
 
-public interface EmailDao extends JpaRepository<Email, Long> {}
+public interface EmailDAO extends JpaRepository<Email, Long> {}

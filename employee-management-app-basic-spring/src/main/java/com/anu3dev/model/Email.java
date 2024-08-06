@@ -17,5 +17,6 @@ public class Email {
 	private long Id;
 	@Column(name="email_id")
 	private String emailId;
+	@Column(columnDefinition="TEXT")
 	private String message;
 }
