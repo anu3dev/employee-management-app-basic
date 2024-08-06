@@ -3,9 +3,7 @@ import './Home.scss'
 import RoutesConfig from '../../../routes/RoutesConfig'
 
 const Home = () => {
-  return (
-    <Suspense fallback>{RoutesConfig}</Suspense>
-  )
+  return <Suspense fallback>{RoutesConfig}</Suspense>
 }
 
 export default Home

@@ -20,7 +20,11 @@ public class EmailController {
 	private IEmailService emailService;
 	
 	@PostMapping("/contact")
-	public ResponseEntity<?> sendOTPAtEmail(@RequestBody Email email) throws Exception {
-		return new ResponseEntity<String>(emailService.sendContactEmail(email), HttpStatus.OK);
+	public ResponseEntity<?> sendOTPAtEmail(@RequestBody Email email) {
+		try {
+			return new ResponseEntity<String>(emailService.sendContactEmail(email), HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<String>("request can't be completed.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }

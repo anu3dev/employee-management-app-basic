@@ -14,13 +14,13 @@ import com.anu3dev.model.APIErrorDetails;
 public class Advice {
 	@ExceptionHandler(Exception.class)
     public ResponseEntity<APIErrorDetails> handleAllProblem(Exception e){
-		APIErrorDetails details = new APIErrorDetails(LocalDateTime.now(), e.getMessage(), "Error");
+		APIErrorDetails details = new APIErrorDetails(LocalDateTime.now(), e.getMessage(), "INTERNAL_SERVER_ERROR");
     	return new ResponseEntity<APIErrorDetails>(details, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<APIErrorDetails> handleDataNotFound(ResourceNotFoundException e){
-		APIErrorDetails details = new APIErrorDetails(LocalDateTime.now(), e.getMessage(), "404-Found");
+		APIErrorDetails details = new APIErrorDetails(LocalDateTime.now(), e.getMessage(), "NOT_FOUND_ERROR");
     	return new ResponseEntity<APIErrorDetails>(details, HttpStatus.NOT_FOUND);
     }
 }

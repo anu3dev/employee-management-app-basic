@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './EmployeeAddScreen.scss'
 import Button from '../../atoms/Button/Button'
-import { saveEmployeeData, getEmployeeData, updateEmployeeData } from "../../../utils/serviceUtils"
+import { saveEmployeeData, getEmployeeData, updateEmployeeData } from '../../../utils/serviceUtils'
 
 const EmployeeAddScreen = () => {
   const urlParams = new URLSearchParams(window.location.search)
@@ -10,40 +10,39 @@ const EmployeeAddScreen = () => {
 
   const isUpdateAction = actionVal === 'update'
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [emailId, setEmailId] = useState("")
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [emailId, setEmailId] = useState('')
 
   useEffect(() => {
-    if(isUpdateAction)
-    getEmployeeData(idVal, setFirstName, setLastName, setEmailId)
-  },[idVal, isUpdateAction]);
+    if (isUpdateAction) getEmployeeData(idVal, setFirstName, setLastName, setEmailId)
+  }, [idVal, isUpdateAction])
 
   const saveRecord = () => {
     const formData = {
       firstName: firstName,
       lastName: lastName,
-      emailId: emailId
+      emailId: emailId,
     }
 
     isUpdateAction ? updateEmployeeData(formData, idVal) : saveEmployeeData(formData)
-    window.location.assign("/")
+    window.location.assign('/')
   }
   const backBtn = () => {
-    window.location.assign("/")
+    window.location.assign('/')
   }
 
   const footerBtnArr = [
     {
-      name: "Save",
+      name: 'Save',
       action: saveRecord,
-      type: "save"
+      type: 'save',
     },
     {
-      name: "Cancel",
+      name: 'Cancel',
       action: backBtn,
-      type: "cancel"
-    }
+      type: 'cancel',
+    },
   ]
 
   const headingVal = `${isUpdateAction ? 'Update' : 'Add'} Employee`
@@ -53,27 +52,30 @@ const EmployeeAddScreen = () => {
       <h1>{headingVal}</h1>
       <div className="employeeAddScreen__form">
         <form>
-          <label>Enter your first name:
+          <label>
+            Enter your first name:
             <input
-              type="text" 
+              type="text"
               value={firstName}
-              placeholder='Enter your first name'
+              placeholder="Enter your first name"
               onChange={(e) => setFirstName(e.target.value)}
             />
           </label>
-          <label>Enter your last name:
+          <label>
+            Enter your last name:
             <input
-              type="text" 
+              type="text"
               value={lastName}
-              placeholder='Enter your last name'
+              placeholder="Enter your last name"
               onChange={(e) => setLastName(e.target.value)}
             />
           </label>
-          <label>Enter your email:
+          <label>
+            Enter your email:
             <input
-              type="email" 
+              type="email"
               value={emailId}
-              placeholder='Enter your email'
+              placeholder="Enter your email"
               onChange={(e) => setEmailId(e.target.value)}
             />
           </label>

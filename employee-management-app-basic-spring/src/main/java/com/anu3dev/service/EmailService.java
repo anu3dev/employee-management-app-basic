@@ -1,7 +1,10 @@
 package com.anu3dev.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -23,16 +26,20 @@ public class EmailService implements IEmailService {
 	@Override
 	public String sendContactEmail(Email email) throws Exception {
 		
-		dao.save(email);
-		
 		MimeMessage mimeMessage = sender.createMimeMessage();
 		
 		MimeMessageHelper emailMessage = new MimeMessageHelper(mimeMessage, true);
 		emailMessage.setFrom(fromEmailid);
+		emailMessage.setCc("boss@company.com");
 		emailMessage.setTo(email.getEmailId());
 		emailMessage.setSubject("We have received your query");
 		emailMessage.setText("Your query is - " + email.getMessage());
-		sender.send(mimeMessage); 
+		emailMessage.setSentDate(new Date());
+		emailMessage.addAttachment("welcome-kit.pdf", new ClassPathResource("welcome-kit.pdf"));
+		sender.send(mimeMessage);
+		
+		dao.save(email);
+		
 		return "We have received your query.";
 	}
 }

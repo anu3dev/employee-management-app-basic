@@ -1,3 +1,3 @@
-import ContactUsScreen from "./ContactUsScreen"
+import ContactUsScreen from './ContactUsScreen'
 
 export default ContactUsScreen
